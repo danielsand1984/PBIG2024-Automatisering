@@ -1,0 +1,115 @@
+{
+	"name": "PL_EXPORT_PBI_DATA",
+	"objectId": "77ebbbf5-e786-437d-9399-e6ddbb8e170e",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_aex",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "LakehouseTableSource",
+						"datasetSettings": {
+							"annotations": [],
+							"linkedService": {
+								"name": "LH_PBIG_2024",
+								"properties": {
+									"annotations": [],
+									"type": "Lakehouse",
+									"typeProperties": {
+										"workspaceId": "8bfc4539-b698-42d0-9882-76516f583d63",
+										"artifactId": "2ae3d10a-6259-43f7-b204-7efdd46dd254",
+										"rootFolder": "Tables"
+									}
+								}
+							},
+							"type": "LakehouseTable",
+							"schema": [
+								{
+									"name": "FactStockMutations[TransactionDateKey]",
+									"type": "long"
+								},
+								{
+									"name": "[TotalValue]",
+									"type": "double"
+								}
+							],
+							"typeProperties": {
+								"table": "Query"
+							}
+						}
+					},
+					"sink": {
+						"type": "SnowflakeSink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						},
+						"datasetSettings": {
+							"annotations": [],
+							"type": "SnowflakeTable",
+							"schema": [
+								{
+									"name": "INVENTORYDATE",
+									"type": "NUMBER",
+									"precision": 38,
+									"scale": 0
+								},
+								{
+									"name": "VALUE",
+									"type": "NUMBER",
+									"precision": 18,
+									"scale": 5
+								}
+							],
+							"typeProperties": {
+								"schema": "PUBLIC",
+								"table": "POWERBI_DATA",
+								"database": "PBIG_2024"
+							},
+							"externalReferences": {
+								"connection": "f7480667-ed0e-4852-aba8-b9d5cc3d7022"
+							}
+						}
+					},
+					"enableStaging": true,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "FactStockMutations[TransactionDateKey]",
+									"type": "Int64"
+								},
+								"sink": {
+									"name": "INVENTORYDATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "[TotalValue]",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "VALUE",
+									"type": "Decimal"
+								}
+							}
+						]
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastModifiedByObjectId": "c66f4c6d-cac0-4ffe-b1ef-f0e34898a782",
+		"lastPublishTime": "2024-03-07T08:56:39Z"
+	}
+}

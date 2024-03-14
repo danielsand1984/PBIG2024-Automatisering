@@ -1,623 +1,115 @@
 {
-    "name": "PL_GET_PBI_ACTIVITIES",
-    "objectId": "9ef33e42-a169-4d54-b56d-0a4c6e1c2890",
-    "properties": {
-        "activities": [
-            {
-                "name": "Copy PowerBI_Activities",
-                "type": "Copy",
-                "dependsOn": [],
-                "policy": {
-                    "timeout": "0.12:00:00",
-                    "retry": 0,
-                    "retryIntervalInSeconds": 30,
-                    "secureOutput": false,
-                    "secureInput": false
-                },
-                "typeProperties": {
-                    "source": {
-                        "type": "RestSource",
-                        "httpRequestTimeout": "00:01:40",
-                        "requestInterval": "00.00:00:00.010",
-                        "requestMethod": "GET",
-                        "datasetSettings": {
-                            "annotations": [],
-                            "type": "RestResource",
-                            "typeProperties": {
-                                "relativeUrl": "?startDateTime='2024-03-06T00%3A00%3A00.000Z'&endDateTime='2024-03-06T23%3A59%3A59.999Z'"
-                            },
-                            "schema": [],
-                            "externalReferences": {
-                                "connection": "4ea5584e-d262-4902-87b8-d652eba7be6e"
-                            }
-                        }
-                    },
-                    "sink": {
-                        "type": "LakehouseTableSink",
-                        "tableActionOption": "Overwrite",
-                        "partitionOption": "None",
-                        "datasetSettings": {
-                            "annotations": [],
-                            "linkedService": {
-                                "name": "LH_PBIG_2024",
-                                "properties": {
-                                    "annotations": [],
-                                    "type": "Lakehouse",
-                                    "typeProperties": {
-                                        "workspaceId": "8bfc4539-b698-42d0-9882-76516f583d63",
-                                        "artifactId": "2ae3d10a-6259-43f7-b204-7efdd46dd254",
-                                        "rootFolder": "Tables"
-                                    }
-                                }
-                            },
-                            "type": "LakehouseTable",
-                            "schema": [],
-                            "typeProperties": {
-                                "table": "PowerBI_Activities"
-                            }
-                        }
-                    },
-                    "enableStaging": false,
-                    "translator": {
-                        "type": "TabularTranslator",
-                        "mappings": [
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.Id",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "Id",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.RecordType",
-                                    "type": "Int64"
-                                },
-                                "sink": {
-                                    "name": "RecordType",
-                                    "physicalType": "long"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.CreationTime",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "CreationTime",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.Operation",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "Operation",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.OrganizationId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "OrganizationId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.UserType",
-                                    "type": "Int64"
-                                },
-                                "sink": {
-                                    "name": "UserType",
-                                    "physicalType": "long"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.UserKey",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "UserKey",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.Workload",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "Workload",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.UserId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "UserId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ClientIP",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ClientIP",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.Activity",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "Activity",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ItemName",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ItemName",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.WorkSpaceName",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "WorkSpaceName",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.DatasetName",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "DatasetName",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ReportName",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ReportName",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.CapacityId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "CapacityId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.CapacityName",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "CapacityName",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.WorkspaceId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "WorkspaceId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.AppName",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "AppName",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ObjectId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ObjectId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.DatasetId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "DatasetId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ReportId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ReportId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ArtifactId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ArtifactId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ArtifactName",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ArtifactName",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.IsSuccess",
-                                    "type": "Boolean"
-                                },
-                                "sink": {
-                                    "name": "IsSuccess",
-                                    "physicalType": "boolean"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ReportType",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ReportType",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.RequestId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "RequestId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ActivityId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ActivityId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.AppReportId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "AppReportId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.DistributionMethod",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "DistributionMethod",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ConsumptionMethod",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ConsumptionMethod",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.AppId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "AppId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ArtifactKind",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ArtifactKind",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.RefreshEnforcementPolicy",
-                                    "type": "Int64"
-                                },
-                                "sink": {
-                                    "name": "RefreshEnforcementPolicy",
-                                    "physicalType": "long"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "continuationUri",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "continuationUri",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "continuationToken",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "continuationToken",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "lastResultSet",
-                                    "type": "Boolean"
-                                },
-                                "sink": {
-                                    "name": "lastResultSet",
-                                    "physicalType": "boolean"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.UserAgent",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "UserAgent",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.DataConnectivityMode",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "DataConnectivityMode",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.LastRefreshTime",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "LastRefreshTime",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.PackageId",
-                                    "type": "Int64"
-                                },
-                                "sink": {
-                                    "name": "PackageId",
-                                    "physicalType": "long"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ItemId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ItemId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ImportId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ImportId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ImportSource",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ImportSource",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ImportType",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ImportType",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ImportDisplayName",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ImportDisplayName",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.RefreshType",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "RefreshType",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.DeploymentPipelineId",
-                                    "type": "Int64"
-                                },
-                                "sink": {
-                                    "name": "DeploymentPipelineId",
-                                    "physicalType": "long"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.DeploymentPipelineObjectId",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "DeploymentPipelineObjectId",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.DeploymentPipelineStageOrder",
-                                    "type": "Int64"
-                                },
-                                "sink": {
-                                    "name": "DeploymentPipelineStageOrder",
-                                    "physicalType": "long"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.AggregatedWorkspaceInformation.WorkspaceCount",
-                                    "type": "Int64"
-                                },
-                                "sink": {
-                                    "name": "AggregatedWorkspaceInformation.WorkspaceCount",
-                                    "physicalType": "long"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.AggregatedWorkspaceInformation.WorkspacesByCapacitySku",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "AggregatedWorkspaceInformation.WorkspacesByCapacitySku",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.AggregatedWorkspaceInformation.WorkspacesByType",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "AggregatedWorkspaceInformation.WorkspacesByType",
-                                    "physicalType": "string"
-                                }
-                            },
-                            {
-                                "source": {
-                                    "name": "activityEventEntities.ModelsSnapshots",
-                                    "type": "String"
-                                },
-                                "sink": {
-                                    "name": "ModelsSnapshots",
-                                    "physicalType": "string"
-                                }
-                            }
-                        ],
-                        "typeConversion": true,
-                        "typeConversionSettings": {
-                            "allowDataTruncation": true,
-                            "treatBooleanAsNumber": false
-                        },
-                        "columnFlattenSettings": {
-                            "treatArrayAsString": false,
-                            "treatStructAsString": false,
-                            "flattenColumnDelimiter": "."
-                        }
-                    }
+  "name": "PL_EXPORT_PBI_DATA",
+  "objectId": "77ebbbf5-e786-437d-9399-e6ddbb8e170e",
+  "properties": {
+    "activities": [
+      {
+        "name": "Copy_aex",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "annotations": [],
+              "linkedService": {
+                "name": "LH_PBIG_2024",
+                "properties": {
+                  "annotations": [],
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "workspaceId": "8bfc4539-b698-42d0-9882-76516f583d63",
+                    "artifactId": "2ae3d10a-6259-43f7-b204-7efdd46dd254",
+                    "rootFolder": "Tables"
+                  }
                 }
+              },
+              "type": "LakehouseTable",
+              "schema": [
+                {
+                  "name": "FactStockMutations[TransactionDateKey]",
+                  "type": "long"
+                },
+                {
+                  "name": "[TotalValue]",
+                  "type": "double"
+                }
+              ],
+              "typeProperties": {
+                "table": "Query"
+              }
             }
-        ],
-        "annotations": [],
-        "lastModifiedByObjectId": "c66f4c6d-cac0-4ffe-b1ef-f0e34898a782",
-        "lastPublishTime": "2024-03-06T12:23:34Z"
-    }
+          },
+          "sink": {
+            "type": "SnowflakeSink",
+            "importSettings": {
+              "type": "SnowflakeImportCopyCommand"
+            },
+            "datasetSettings": {
+              "annotations": [],
+              "type": "SnowflakeTable",
+              "schema": [
+                {
+                  "name": "INVENTORYDATE",
+                  "type": "NUMBER",
+                  "precision": 38,
+                  "scale": 0
+                },
+                {
+                  "name": "VALUE",
+                  "type": "NUMBER",
+                  "precision": 18,
+                  "scale": 5
+                }
+              ],
+              "typeProperties": {
+                "schema": "PUBLIC",
+                "table": "POWERBI_DATA",
+                "database": "PBIG_2024"
+              },
+              "externalReferences": {
+                "connection": "f7480667-ed0e-4852-aba8-b9d5cc3d7022"
+              }
+            }
+          },
+          "enableStaging": true,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "FactStockMutations[TransactionDateKey]",
+                  "type": "Int64"
+                },
+                "sink": {
+                  "name": "INVENTORYDATE",
+                  "type": "String"
+                }
+              },
+              {
+                "source": {
+                  "name": "[TotalValue]",
+                  "type": "Double"
+                },
+                "sink": {
+                  "name": "VALUE",
+                  "type": "Decimal"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "annotations": [],
+    "lastModifiedByObjectId": "c66f4c6d-cac0-4ffe-b1ef-f0e34898a782",
+    "lastPublishTime": "2024-03-07T08:56:39Z"
+  }
 }

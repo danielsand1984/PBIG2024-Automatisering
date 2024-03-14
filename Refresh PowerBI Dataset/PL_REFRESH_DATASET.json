@@ -1,0 +1,46 @@
+{
+	"name": "PBIG2024",
+	"properties": {
+		"activities": [
+			{
+				"name": "Refresh Power BI dataset",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 2,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"headers": {
+						"content-type": "application/json"
+					},
+					"url": "https://api.powerbi.com/v1.0/myorg/groups/072fed92-a979-4901-975c-ddfdbc4bd36d/datasets/a2e862b4-937f-4c8a-9f71-c149d89a99b8/refreshes",
+					"body": "{\n  \"type\": \"full\",\n}",
+					"authentication": {
+						"type": "ServicePrincipal",
+						"userTenant": "98828c3c-aef1-487a-ac8e-7c8cdeeaa2f8",
+						"username": "aaf1199f-1fd3-4ecc-8726-eccc487f6ba5",
+						"resource": "https://analysis.windows.net/powerbi/api",
+						"password": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "keyvault",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "PBIG2024"
+						}
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "PW - Iris/Custom"
+		},
+		"annotations": []
+	}
+}
